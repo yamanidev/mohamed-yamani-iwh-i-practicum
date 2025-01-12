@@ -62,3 +62,33 @@ input[type="submit"] {
     padding: .375rem 1rem;
     margin-top: 10px;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+  
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+  
+td {
+    word-wrap: break-word;
+}
+  
+td::before {
+    content: "-";
+    display: inline-block;
+}
+  
+td:not(:empty)::before {
+    content: "";
+}
