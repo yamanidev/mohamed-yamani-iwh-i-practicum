@@ -4,7 +4,7 @@ const express = require("express");
 const axios = require("axios");
 const app = express();
 
-const { CONTACTS_API_URL } = require("./constants");
+const { CONTACTS_API_URL, EMAIL_REGEX } = require("./constants");
 
 app.set("view engine", "pug");
 app.use(express.static(__dirname + "/public"));
@@ -23,15 +23,45 @@ const PRIVATE_APP_ACCESS_TOKEN = process.env.PRIVATE_APP_ACCESS_TOKEN;
 // * Code for Route 2 goes here
 app.get("/update-cobj", async (req, res) => {
     try {
-        res.render("updates", { title: "Update Custom Object Form | Integrating With HubSpot I Practicum" })
+        res.render("updates", { title: "Update Custom Object Form | Integrating With HubSpot I Practicum" });
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 });
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 // * Code for Route 3 goes here
+app.post("/update-cobj", async (req, res) => {
+    const { email, full_name, age, bio } = req.body;
+    
+    if (!email || !EMAIL_REGEX.test(email)) {
+        console.log("400 Bad Request: Valid 'email' field is required");
+        return res.status(400).json({ error: "Valid email is required"});
+    }
+    
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS_TOKEN}`,
+        "Content-Type": "application/json"
+    };
+
+    try {
+        const response = await axios.post(CONTACTS_API_URL, {
+            properties: {
+                email,
+                full_name,
+                age,
+                bio
+            }
+        }, { headers });
+
+        console.log("Contact created successfully")
+        res.redirect("/");
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to create contact", details: error.message });
+    }
+});
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
