@@ -7,5 +7,5 @@ Note: Custom Objects are not available in the free tier, so I used the Contact o
 
 ## Running locally
 - Install the project's dependencies: `npm install`
-- Copy the example environment variables and fill it appropriately: `cp .example.env .env`
+- Copy the example environment variables file and fill it appropriately: `cp .example.env .env`
 - Run the development server: `npm run dev`
