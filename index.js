@@ -4,6 +4,8 @@ const express = require("express");
 const axios = require("axios");
 const app = express();
 
+const { CONTACTS_API_URL } = require("./constants");
+
 app.set("view engine", "pug");
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +27,7 @@ app.get("/update-cobj", async (req, res) => {
     } catch (error) {
         console.error(error)
     }
-})
+});
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
