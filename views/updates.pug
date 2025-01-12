@@ -8,3 +8,18 @@ html
     .container
       h1= title
       a(href="/") Return to the homepage
+      form(action="/update-cobj" method="POST")
+        div
+          label(for="email") Email:
+          input(type="email" id="email" name="email" required)
+        div
+          label(for="full_name") Full Name:
+          input(type="text" id="full_name" name="full_name")
+        div
+          label(for="age") Age:
+          input(type="number" id="age" name="age")
+        div
+          label(for="bio") Bio:
+          textarea(id="bio" name="bio" rows="4" cols="50")
+        div
+          button(type="submit") Submit
