@@ -17,6 +17,22 @@ const PRIVATE_APP_ACCESS_TOKEN = process.env.PRIVATE_APP_ACCESS_TOKEN;
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
+app.get("/", async (req, res) => {
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS_TOKEN}`,
+        "Content-Type": "application/json"
+    };
+
+    try {
+        const response = await axios.get(`${CONTACTS_API_URL}?properties=full_name,email,age,bio`, { headers });
+        const data = response.data.results;
+        
+        res.render("homepage", { title: "Contacts | Integrating With HubSpot I Practicum", data });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to create contact", details: error.message });
+    }
+});
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
