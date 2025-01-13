@@ -1,0 +1,27 @@
+doctype html
+html 
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    .container
+      h1 Contacts Object Table
+      a(href="/update-cobj") Add/Update this table
+      if data
+          table
+            thead
+              tr
+                th Full Name
+                th Email
+                th Age
+                th Bio
+            tbody
+              each contact in data
+                tr
+                  td= contact.properties.email
+                  td= contact.properties.full_name
+                  td= contact.properties.age
+                  td= contact.properties.bio
+      else
+        p An error has occurred, please try again later.

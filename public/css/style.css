@@ -1,13 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body, * {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    margin: 1rem;
+    margin-block: 1rem;
+}
+
+.container {
+    max-width: 75rem; /* 1200px */
+    padding: 1.25rem; /* 20px */
+    margin: 0 auto;
 }
 
 .cards {
@@ -55,4 +61,34 @@ input[type="submit"] {
     border: none;
     padding: .375rem 1rem;
     margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+  
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+  
+td {
+    word-wrap: break-word;
+}
+  
+td::before {
+    content: "-";
+    display: inline-block;
+}
+  
+td:not(:empty)::before {
+    content: "";
 }
